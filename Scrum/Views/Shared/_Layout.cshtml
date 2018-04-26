@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/dist/css/skins/_all-skins.min.css">
+
     <link rel="stylesheet" href="~/Content/dist/css/skins/skin-blue.min.css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -30,7 +32,7 @@
                             <!-- The user image in the navbar-->
                             <img src="~/Content/dist/img/user.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">@Session["nameSurname"].ToString()</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -70,5 +72,8 @@
     <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/Content/dist/js/adminlte.min.js"></script>
+    @RenderSection("backScript", false)
+
+
 </body>
 </html>

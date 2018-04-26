@@ -1,0 +1,92 @@
+﻿@using Scrum.Models
+@{
+    ViewBag.Title = "InsertTask";
+    List<Category> categories = ViewBag.Categories;
+    List<Working> workings = ViewBag.Workings;
+    List<Story> stories = ViewBag.Stories;
+
+}
+
+<section class="content" style="margin-top:25px;">
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Görev Ekleme</h3>
+        </div>
+
+        <form method="post" action="~/Register/InsertTask" class="form-horizontal">
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="labelTaskName" class="col-sm-2 control-label" style="font-size:17px;">Görev Adı</label>
+                    <div class="col-sm-10">
+                        <input name="taskName" type="text" class="form-control" >
+                    </div>
+                </div>
+
+                 <div class="form-group">
+                    <label for="labelTaskDeadline" class="col-sm-2 control-label" style="font-size:17px;">Görev Son Tarih:</label>
+                    <div class="col-sm-10">
+                        <input name="taskDeadline" type="text" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="labelStoryName" class="col-sm-2 control-label" style="font-size:17px;">Story Adı:</label>
+                    <div class="col-sm-10">
+                        <select name="storyName" id="inputOdaSorumlu" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            @foreach (Story s in stories)
+                            {
+                                <option>@s.storyName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="labelStoryWorking" class="col-sm-2 control-label" style="font-size:17px;">Göreve atanacak kişi: </label>
+                    <div class="col-sm-10">
+                        <select name="storyWorking" id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            @foreach (Working w in workings)
+                            {
+                                <option>@w.name @w.surname</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="labelTaskCategory" class="col-sm-2 control-label" style="font-size:17px;">Görev durumu: </label>
+                    <div class="col-sm-10">
+                        <select name="taskCategory" id="inputFakulte" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            @foreach (Category c in categories)
+                            {
+                                <option>@c.categoryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="button" class="btn btn-default" id="back">Geri</button>
+                <button type="submit" class="btn btn-info pull-right">Görev Ekle</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+
+</section>
+
+@section backScript{
+    <script type="text/javascript">
+    $(function () {
+
+        $("#back").click(function () {
+          location.href = "../Home/Index";
+        });
+    });
+
+    </script>
+}
