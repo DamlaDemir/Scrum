@@ -55,11 +55,11 @@
     </div>
     <!-- /.col -->
 </div>
+
         
-           
+            <div class="row">       
                 @foreach (var st in ViewBag.Stories)
                 {
-                    <div class="row">
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
@@ -77,10 +77,11 @@
                             </div>
                         </div>
 
-                        @foreach (var tk in ViewBag.Tasks)
+                        foreach (var tk in ViewBag.Tasks)
                         {
-                            if (tk.storyId==st.storyId && tk.categoryId == 3)
+                            if (tk.storyId==st.storyId )
                             {
+                                
                                 <div class="col-lg-3 col-xs-6" >
                                     <div class="box box-primary">
                                         <div class="box-header">
@@ -132,10 +133,8 @@
                              }
                             
                         }
-                        </div>
                }
-
-
+            </div>
 
 
             @section indexScript{
