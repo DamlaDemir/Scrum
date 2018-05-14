@@ -2,6 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
 
@@ -16,6 +18,12 @@
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    @RenderSection("backScript", false)
+    @RenderSection("indexScript", false)
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <header class="main-header">
@@ -38,7 +46,7 @@
                             <!-- The user image in the navbar-->
                             <img src="~/Content/dist/img/user.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">@Session["nameSurname"].ToString()</span>
+                            <span class="hidden-xs"></span><!--Session["nameSurname"].ToString() başına et gelecek-->
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -75,10 +83,6 @@
         </section>
         <!-- /.content -->
     
-    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/Content/dist/js/adminlte.min.js"></script>
-    @RenderSection("backScript", false)
-    @RenderSection("indexScript", false)
+
 </body>
 </html>

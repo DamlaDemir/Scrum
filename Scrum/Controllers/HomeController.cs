@@ -19,5 +19,10 @@ namespace Scrum.Controllers
 			return View();
 		}
 
+		public ActionResult deneme()
+		{
+			return View();
+		}
+
 	}
 }
