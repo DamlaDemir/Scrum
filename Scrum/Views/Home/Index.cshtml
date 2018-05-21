@@ -1,12 +1,17 @@
 ﻿
      <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12" >
         <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text"><h3>Stories</h3></span>
-    
+                <span class="info-box-text">
+                    <h3>Stories</h3>
+                    @Html.ActionLink("Add Story", "InsertStory", "Register","",
+                                    new { name = "link", style = "color : white" })
+                    <i class="fa fa-arrow-circle-right"></i>
+                </span>
+
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -51,7 +56,7 @@
         <!-- /.info-box -->
     </div>
     <!-- /.col -->
-</div>         
+</div>   
                 @{int i=0; }
 
                 @foreach (var st in ViewBag.Stories)
@@ -68,9 +73,9 @@
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
+                                    @Html.ActionLink("Add Task", "InsertTask", "Register", new { storyId = st.storyId },
+                                    new {name = "link", style = "color : white;font-size:20px;padding:8px;" })
+                                    <i class="fa fa-arrow-circle-right"></i>                       
                             </div>
                         </div>
                       
@@ -84,48 +89,52 @@
                                     {
                                         if (tk.categoryId == i)
                                         {
-                                            <div class="box box-primary">
-                                                <div class="box-header">
-                                                    <i class="ion ion-clipboard"></i>
-                                                    <h3 class="box-title">To Do List</h3>
-                                                </div>
-                                                <!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                                    <ul class="todo-list">
-                                                        <li>
-                                                            <!-- drag handle -->
-                                                            <span class="handle">
-                                                                <i class="fa fa-ellipsis-v"></i>
-                                                                <i class="fa fa-ellipsis-v"></i>
-                                                            </span>
-                                                            <!-- checkbox -->
-                                                            <input type="checkbox" value="">
-                                                            <!-- todo text -->
-                                                            <span class="text">@tk.taskName</span>
-                                                            <!-- Emphasis label -->
-                                                            <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.Working.name @tk.Working.surname </small>
-                                                            <!-- General tools such as edit or delete-->
-                                                            <div class="tools">
-                                                                <i class="fa fa-edit"></i>
-                                                                <i class="fa fa-trash-o"></i>
-                                                            </div>
-                                                        </li>
+                                                        <div class="box box-primary" style="height:150px;">                         
+                                                            <!-- /.box-header -->
+                                                            <div class="box-body" style="height:100px;">
+                                                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+                                                                <ul class="todo-list" style="height:150px;margin:0px;padding:1px;">
+                                                                    <li>
+                                                                        <!-- drag handle -->
+                                                                        <span class="handle">
+                                                                            <i class="fa fa-ellipsis-v"></i>
+                                                                            <i class="fa fa-ellipsis-v"></i>
+                                                                        </span>
+                                                                        <!-- todo text -->
+                                                                        <span class="text taskName" style="font-size:17px;">@tk.taskName</span><br/>
+                                                                        <!-- Emphasis label -->
+                                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.Working.name @tk.Working.surname </small>
+                                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.taskDeadline </small>
 
-                                                    </ul>
-                                                </div>
-                                                <!-- /.box-body -->
-                                                <div class="box-footer clearfix no-border">
-                                                    <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-                                                </div>
-                                            </div>
+                                                                        <!-- General tools such as edit or delete-->
+                                                                        <div class="tools">
+                                                                            <i class="fa fa-edit"></i>
+                                                                            <i class="fa fa-trash-o"></i>
+                                                                        </div>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                            <!-- /.box-body -->
+                                                            <div class="box-footer clearfix no-border" >
+                                                                <div class="form-group">
+                                                                 <input type="radio" name="r3" class="category" categoryId="3" taskId="@tk.taskId" >
+                                                                  <b style="font-size:15px;">Done</b> 
+                                                                 <input type="radio" name="r3" class="category" categoryId="2" taskId="@tk.taskId">
+                                                                 <b style="font-size:15px;">In Progress</b>
+                                                                 <input type="radio" name="r3" class="category" categoryId="1" taskId="@tk.taskId">
+                                                                 <b style="font-size:15px;">Not Started</b>
+                                                             </div>
+                                                        </div>
+                                                     </div>
                                         }
 
                                     }
                                 }
-                            </div>
+                                </div>
                         }
                         </div>
+                        <hr style="border-width:5px;"/>
                }
 
 
@@ -145,6 +154,25 @@
                 <script src="~/Content/dist/js/pages/dashboard2.js"></script>
                 <!-- AdminLTE for demo purposes -->
                 <script src="~/Content/dist/js/demo.js"></script>
+                
+                <script type="text/javascript">
+                    $(function () {
 
+                        $(".category").click(function () {
+                            var taskId=$(this).attr('taskId');
+                            var categoryId = $(this).attr('categoryId');
+                          
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Home/UpdateTaskCategory',
+                                data: { taskId: taskId, categoryId: categoryId},
+                                success: function () {
+                                }
+                            });
+                            location.reload();
+                        });
 
+                      
+                    });
+                </script>
             }

@@ -19,5 +19,16 @@ namespace Scrum.Controllers
 			return View();
 		}
 
-	}
+        public ActionResult UpdateTaskCategory(int taskId,int categoryId)
+        {
+
+            Task task= db.Task.FirstOrDefault(x => x.taskId == taskId);
+            task.categoryId = categoryId;
+            db.SaveChanges();
+            return View(Index());
+        }
+
+
+
+    }
 }

@@ -24,28 +24,29 @@ namespace Scrum.Controllers
             db.SaveChanges();
             return View(InsertStory());
         }
-
-        public ActionResult InsertTask()
+        
+        public ActionResult InsertTask(int storyId)
         {
             ViewBag.Categories = db.Category.ToList();
             ViewBag.Workings = db.Working.ToList();
-            ViewBag.Stories = db.Story.ToList();
+            ViewBag.Story = db.Story.FirstOrDefault(x=>x.storyId==storyId);
             return View();
         }
 
         [HttpPost]
         public ActionResult InsertTask(string taskName, string taskDeadline,string storyName,string storyWorking,string taskCategory)
         {
+            int storyId = db.Story.FirstOrDefault(x => x.storyName == storyName).storyId;
             Task t = new Task();
             t.taskName = taskName;
             t.taskDeadline = taskDeadline;
-            t.storyId= db.Story.FirstOrDefault(x => x.storyName == storyName).storyId;
-            t.workingId = db.Working.FirstOrDefault(x => x.name + "" + x.surname == storyWorking).workingId;
+            t.storyId= storyId;
+            t.workingId = db.Working.FirstOrDefault(x => x.name+" "+x.surname ==storyWorking).workingId;
             t.categoryId = db.Category.FirstOrDefault(x => x.categoryName == taskCategory).categoryId;
             db.Task.Add(t);
             db.SaveChanges();
 
-            return View(InsertTask());
+            return View(InsertTask(storyId));
         }
 
     }

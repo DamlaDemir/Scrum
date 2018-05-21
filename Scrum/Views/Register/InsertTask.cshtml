@@ -3,7 +3,7 @@
     ViewBag.Title = "InsertTask";
     List<Category> categories = ViewBag.Categories;
     List<Working> workings = ViewBag.Workings;
-    List<Story> stories = ViewBag.Stories;
+    Story story = ViewBag.Story;
 
 }
 
@@ -23,11 +23,10 @@
                         <input name="taskName" type="text" class="form-control" >
                     </div>
                 </div>
-
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="labelTaskDeadline" class="col-sm-2 control-label" style="font-size:17px;">Görev Son Tarih:</label>
                     <div class="col-sm-10">
-                        <input name="taskDeadline" type="text" class="form-control" >
+                        <input type="date" class="form-control" name="taskDeadline" id="lastAppDate">
                     </div>
                 </div>
 
@@ -35,10 +34,7 @@
                     <label for="labelStoryName" class="col-sm-2 control-label" style="font-size:17px;">Story Adı:</label>
                     <div class="col-sm-10">
                         <select name="storyName" id="inputOdaSorumlu" class="form-control col-sm-10 control-label" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                            @foreach (Story s in stories)
-                            {
-                                <option>@s.storyName</option>
-                            }
+                            <option>@story.storyName</option>        
                         </select>
                     </div>
                 </div>
@@ -71,7 +67,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button type="button" class="btn btn-default" id="back">Geri</button>
-                <button type="submit" class="btn btn-info pull-right">Görev Ekle</button>
+                <button type="submit" class="btn btn-info pull-right" id="gorevEkle">Görev Ekle</button>
             </div>
             <!-- /.box-footer -->
         </form>
