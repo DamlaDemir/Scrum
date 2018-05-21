@@ -11,7 +11,7 @@ namespace Scrum.Controllers
 	{
 		ScrumDbEntities db = new ScrumDbEntities();
 	
-
+        //
 		public ActionResult Index()
 		{
 			ViewBag.Stories = db.Story.ToList();
