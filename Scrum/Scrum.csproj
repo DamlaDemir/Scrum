@@ -6813,6 +6813,9 @@
     <Content Include="Content\documentation\docs.js" />
     <Content Include="Content\documentation\index.html" />
     <Content Include="Content\documentation\style.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.js" />
+    <Content Include="Content\jquery-ui.min.js" />
     <Content Include="Content\login\css\bootstrap.min.css" />
     <Content Include="Content\login\css\font-awesome.min.css" />
     <Content Include="Content\login\css\sb-admin.css" />

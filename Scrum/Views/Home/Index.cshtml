@@ -61,7 +61,6 @@
 
                 @foreach (var st in ViewBag.Stories)
                 {
-                    <div class="row">
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
@@ -78,10 +77,12 @@
                                     <i class="fa fa-arrow-circle-right"></i>                       
                             </div>
                         </div>
-                      
-                        @for (i = 3; i >= 1; i--)
-                        {
+                    for (i = 3; i >= 1; i--)
+                    {
+                   
+
                             <div class="col-lg-3 col-xs-6">
+                                <div class="task">
 
                                 @foreach (var tk in ViewBag.Tasks)
                                 {
@@ -141,6 +142,7 @@
 
 
             @section indexScript{
+<script src="~/Content/jquery-ui.js"></script>
                 <script src="~/Content/bower_components/fastclick/lib/fastclick.js"></script>
                 <script src="~/Content/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
                 <!-- jvectormap  -->
@@ -176,3 +178,4 @@
                     });
                 </script>
             }
+
