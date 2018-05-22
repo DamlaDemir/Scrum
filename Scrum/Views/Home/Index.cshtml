@@ -57,92 +57,88 @@
     </div>
     <!-- /.col -->
 </div>   
-                @{int i=0; }
+               @{int i = 0; }
 
-                @foreach (var st in ViewBag.Stories)
-                {
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h4>@st.storyName</h4>
+            @foreach (var st in ViewBag.Stories)
+            {
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h4>@st.storyName</h4>
 
-                                    <p>@st.storyDeadline</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                    @Html.ActionLink("Add Task", "InsertTask", "Register", new { storyId = st.storyId },
-                                    new {name = "link", style = "color : white;font-size:20px;padding:8px;" })
-                                    <i class="fa fa-arrow-circle-right"></i>                       
+                                <p>@st.storyDeadline</p>
                             </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            @Html.ActionLink("Add Task", "InsertTask", "Register", new { storyId = st.storyId },
+                                    new { name = "link", style = "color : white;font-size:20px;padding:8px;" })
+                            <i class="fa fa-arrow-circle-right"></i>
                         </div>
-                    for (i = 3; i >= 1; i--)
+                    </div>
+
+                    @for (i = 3; i >= 1; i--)
                     {
-                   
+                        <div class="col-lg-3 col-xs-6">
 
-                            <div class="col-lg-3 col-xs-6">
-                                <div class="task">
-
-                                @foreach (var tk in ViewBag.Tasks)
+                            @foreach (var tk in ViewBag.Tasks)
+                            {
+                                if (tk.storyId == st.storyId)
                                 {
-                                    if (tk.storyId == st.storyId)
+                                    if (tk.categoryId == i)
                                     {
-                                        if (tk.categoryId == i)
-                                        {
-                                                        <div class="box box-primary" style="height:150px;">                         
-                                                            <!-- /.box-header -->
-                                                            <div class="box-body" style="height:100px;">
-                                                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                                                <ul class="todo-list" style="height:150px;margin:0px;padding:1px;">
-                                                                    <li>
-                                                                        <!-- drag handle -->
-                                                                        <span class="handle">
-                                                                            <i class="fa fa-ellipsis-v"></i>
-                                                                            <i class="fa fa-ellipsis-v"></i>
-                                                                        </span>
-                                                                        <!-- todo text -->
-                                                                        <span class="text taskName" style="font-size:17px;">@tk.taskName</span><br/>
-                                                                        <!-- Emphasis label -->
-                                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.Working.name @tk.Working.surname </small>
-                                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.taskDeadline </small>
+                                        <div class="box box-primary" style="height:150px;">
+                                            <!-- /.box-header -->
+                                            <div class="box-body" style="height:100px;">
+                                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+                                                <ul class="todo-list" style="height:150px;margin:0px;padding:1px;">
+                                                    <li>
+                                                        <!-- drag handle -->
+                                                        <span class="handle">
+                                                            <i class="fa fa-ellipsis-v"></i>
+                                                            <i class="fa fa-ellipsis-v"></i>
+                                                        </span>
+                                                        <!-- todo text -->
+                                                        <span class="text taskName" style="font-size:17px;">@tk.taskName</span><br />
+                                                        <!-- Emphasis label -->
+                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.Working.name @tk.Working.surname </small>
+                                                        <small class="label label-danger"><i class="fa fa-clock-o"></i> @tk.taskDeadline </small>
 
-                                                                        <!-- General tools such as edit or delete-->
-                                                                        <div class="tools">
-                                                                            <i class="fa fa-edit"></i>
-                                                                            <i class="fa fa-trash-o"></i>
-                                                                        </div>
-                                                                    </li>
-
-                                                                </ul>
-                                                            </div>
-                                                            <!-- /.box-body -->
-                                                            <div class="box-footer clearfix no-border" >
-                                                                <div class="form-group">
-                                                                 <input type="radio" name="r3" class="category" categoryId="3" taskId="@tk.taskId" >
-                                                                  <b style="font-size:15px;">Done</b> 
-                                                                 <input type="radio" name="r3" class="category" categoryId="2" taskId="@tk.taskId">
-                                                                 <b style="font-size:15px;">In Progress</b>
-                                                                 <input type="radio" name="r3" class="category" categoryId="1" taskId="@tk.taskId">
-                                                                 <b style="font-size:15px;">Not Started</b>
-                                                             </div>
+                                                        <!-- General tools such as edit or delete-->
+                                                        <div class="tools">
+                                                            <i class="fa fa-edit"></i>
+                                                            <i class="fa fa-trash-o"></i>
                                                         </div>
-                                                     </div>
-                                        }
+                                                    </li>
 
+                                                </ul>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer clearfix no-border">
+                                                <div class="form-group">
+                                                    <input type="radio" name="r3" class="category" categoryId="3" taskId="@tk.taskId">
+                                                    <b style="font-size:15px;">Done</b>
+                                                    <input type="radio" name="r3" class="category" categoryId="2" taskId="@tk.taskId">
+                                                    <b style="font-size:15px;">In Progress</b>
+                                                    <input type="radio" name="r3" class="category" categoryId="1" taskId="@tk.taskId">
+                                                    <b style="font-size:15px;">Not Started</b>
+                                                </div>
+                                            </div>
+                                        </div>
                                     }
+
                                 }
-                                </div>
-                        }
+                            }
                         </div>
-                        <hr style="border-width:5px;"/>
-               }
-
-
-
+                    }
+                </div>
+                        <hr style="border-width:5px;" />
+            }
 
             @section indexScript{
-<script src="~/Content/jquery-ui.js"></script>
+                <script src="~/Content/jquery-ui.js"></script>
                 <script src="~/Content/bower_components/fastclick/lib/fastclick.js"></script>
                 <script src="~/Content/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
                 <!-- jvectormap  -->
